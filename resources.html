@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resources – GHASSA</title>
+  <link rel="stylesheet" href="ghassa.css">
+  <style>
+    .resources-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 16px;
+    }
+    .res-tab {
+      padding: 10px 22px;
+      border-radius: 8px 8px 0 0;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      border: none;
+      background: var(--light-gray);
+      color: var(--gray);
+      font-family: var(--font-body);
+      transition: all .2s;
+    }
+    .res-tab.active, .res-tab:hover {
+      background: var(--green);
+      color: white;
+    }
+    .res-section { display: none; }
+    .res-section.active { display: block; }
+
+    .res-cat-title {
+      font-family: var(--font-head);
+      font-size: 1.3rem;
+      color: var(--dark);
+      margin: 32px 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .res-cat-title:first-child { margin-top: 0; }
+
+    .resource-list { display: grid; gap: 12px; }
+    .resource-item {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: all .25s;
+    }
+    .resource-item:hover {
+      border-color: var(--green);
+      box-shadow: var(--shadow);
+      transform: translateX(4px);
+    }
+    .resource-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .ri-pdf { background: #ffeeed; }
+    .ri-doc { background: var(--green-light); }
+    .ri-link { background: var(--gold-light); }
+    .ri-video { background: #f0e8ff; }
+    .resource-info { flex: 1; }
+    .resource-info h4 { font-weight: 700; color: var(--dark); margin-bottom: 4px; font-size: 0.95rem; }
+    .resource-info p { font-size: 0.8rem; color: var(--gray); line-height: 1.4; }
+    .resource-info .res-tags { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+    .resource-btn { flex-shrink: 0; }
+
+    /* FAQ */
+    .faq-section { max-width: 760px; }
+    .faq-list { margin-top: 24px; }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a> <span>›</span> <span>Resources</span>
+      </div>
+      <h1>Resources & Guides</h1>
+      <p>Everything a Ghanaian in Spain needs — guides, PDFs, links, and answers to your most important questions.</p>
+    </div>
+  </div>
+
+  <section class="section" style="background:white;">
+    <div class="container">
+
+      <!-- TABS -->
+      <div class="resources-tabs">
+        <button class="res-tab active" onclick="showTab('downloads')">📥 Downloads</button>
+        <button class="res-tab" onclick="showTab('guides')">📖 Guides</button>
+        <button class="res-tab" onclick="showTab('links')">🔗 Useful Links</button>
+        <button class="res-tab" onclick="showTab('faq')">❓ FAQ</button>
+        <button class="res-tab" onclick="showTab('scholarships')">🎓 Scholarships</button>
+      </div>
+
+      <!-- DOWNLOADS TAB -->
+      <div id="tab-downloads" class="res-section active">
+        <div class="res-cat-title">📄 Official GHASSA Documents</div>
+        <div class="resource-list">
+          <div class="resource-item">
+            <div class="resource-icon ri-pdf">📋</div>
+            <div class="resource-info">
+              <h4>Kit de Becas – GHASSA</h4>
+              <p>A comprehensive scholarship guide compiled by GHASSA for Ghanaian students in Spain.</p>
+              <div class="res-tags">
+                <span class="tag tag-green">Scholarships</span>
+                <span class="tag tag-gold">Students</span>
+              </div>
+            </div>
+            <div class="resource-btn">
+              <a href="https://drive.google.com/file/d/1D95pW8wew76l3mRaKRQcDLxQ2Ru5Fo2z/view?usp=drive_link" target="_blank" class="btn btn-green" style="font-size:0.82rem;padding:10px 18px;">Open →</a>
+            </div>
+          </div>
+          <div class="resource-item">
+            <div class="resource-icon ri-doc">🎓</div>
+            <div class="resource-info">
+              <h4>Orientación Académica para la ESO</h4>
+              <p>Academic orientation materials for the ESO (secondary education) system in Spain.</p>
+              <div class="res-tags">
+                <span class="tag tag-green">Education</span>
+                <span class="tag tag-gold">ESO</span>
+              </div>
+            </div>
+            <div class="resource-btn">
+              <a href="https://drive.google.com/drive/folders/1bgPGh1VtsQDRGLmf5ZEOKI-_nicWMP22?usp=share_link" target="_blank" class="btn btn-green" style="font-size:0.82rem;padding:10px 18px;">Open →</a>
+            </div>
+          </div>
+          <div class="resource-item">
+            <div class="resource-icon ri-pdf">📜</div>
+            <div class="resource-info">
+              <h4>Legal Recognition of Ghanaian Diplomas in Spain</h4>
+              <p>Step-by-step guide on how to get your Ghanaian academic qualifications recognized in Spain (homologación).</p>
+              <div class="res-tags">
+                <span class="tag tag-green">Legal</span>
+                <span class="tag tag-gold">Diplomas</span>
+              </div>
+            </div>
+            <div class="resource-btn">
+              <a href="#" class="btn btn-ghost" style="font-size:0.82rem;padding:10px 18px;">Coming Soon</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="res-cat-title" style="margin-top:36px;">📁 Administrative Guides (PDFs)</div>
+        <div class="resource-list">
+          <div class="resource-item">
+            <div class="resource-icon ri-pdf">🪪</div>
+            <div class="resource-info">
+              <h4>How to Apply for TIE (Tarjeta de Identidad de Extranjero)</h4>
+              <p>A complete step-by-step guide to applying for your TIE for the first time.</p>
+              <div class="res-tags"><span class="tag tag-green">Immigration</span></div>
+            </div>
+            <div class="resource-btn">
+              <a href="#" class="btn btn-ghost" style="font-size:0.82rem;padding:10px 18px;">Coming Soon</a>
+            </div>
+          </div>
+          <div class="resource-item">
+            <div class="resource-icon ri-pdf">🔄</div>
+            <div class="resource-info">
+              <h4>TIE Renewal Guide</h4>
+              <p>When and how to renew your TIE, required documents, and where to submit your application.</p>
+              <div class="res-tags"><span class="tag tag-green">Immigration</span></div>
+            </div>
+            <div class="resource-btn">
+              <a href="#" class="btn btn-ghost" style="font-size:0.82rem;padding:10px 18px;">Coming Soon</a>
+            </div>
+          </div>
+          <div class="resource-item">
+            <div class="resource-icon ri-pdf">🏛️</div>
+            <div class="resource-info">
+              <h4>NIE Registration Guide</h4>
+              <p>How to obtain your NIE (Número de Identificación de Extranjero) in Spain.</p>
+              <div class="res-tags"><span class="tag tag-green">Immigration</span></div>
+            </div>
+            <div class="resource-btn">
+              <a href="#" class="btn btn-ghost" style="font-size:0.82rem;padding:10px 18px;">Coming Soon</a>
+            </div>
+          </div>
+          <div class="resource-item">
+            <div class="resource-icon ri-pdf">🎓</div>
+            <div class="resource-info">
+              <h4>University Enrollment in Spain – Guide for International Students</h4>
+              <p>Everything you need to know about registering at a Spanish university as an international student.</p>
+              <div class="res-tags"><span class="tag tag-gold">Education</span></div>
+            </div>
+            <div class="resource-btn">
+              <a href="#" class="btn btn-ghost" style="font-size:0.82rem;padding:10px 18px;">Coming Soon</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GUIDES TAB -->
+      <div id="tab-guides" class="res-section">
+        <p style="color:var(--gray);margin-bottom:28px;line-height:1.7;">Practical written guides to help you navigate life in Spain as a Ghanaian. These are written and reviewed by GHASSA members.</p>
+        <div class="resource-list">
+          <div class="resource-item">
+            <div class="resource-icon ri-doc">🏠</div>
+            <div class="resource-info">
+              <h4>Finding Accommodation in Spain</h4>
+              <p>Tips on finding student housing, shared apartments, and avoiding common rental scams.</p>
+            </div>
+            <div class="resource-btn"><a href="contact.html" class="btn btn-ghost" style="font-size:0.82rem;padding:10px 18px;">Request</a></div>
+          </div>
+          <div class="resource-item">
+            <div class="resource-icon ri-doc">💊</div>
+            <div class="resource-info">
+              <h4>Accessing Healthcare in Spain (Seguridad Social)</h4>
+              <p>How to register with a GP, get your health card, and access Spain's public health system.</p>
+            </div>
+            <div class="resource-btn"><a href="contact.html" class="btn btn-ghost" style="font-size:0.82rem;padding:10px 18px;">Request</a></div>
+          </div>
+          <div class="resource-item">
+            <div class="resource-icon ri-doc">🏦</div>
+            <div class="resource-info">
+              <h4>Opening a Bank Account in Spain</h4>
+              <p>Which banks are best for internationals, required documents, and how to apply online or in person.</p>
+            </div>
+            <div class="resource-btn"><a href="contact.html" class="btn btn-ghost" style="font-size:0.82rem;padding:10px 18px;">Request</a></div>
+          </div>
+          <div class="resource-item">
+            <div class="resource-icon ri-doc">💼</div>
+            <div class="resource-info">
+              <h4>Working in Spain as a Student</h4>
+              <p>Legal hours, work permits, how to declare income, and rights you should know as a student worker.</p>
+            </div>
+            <div class="resource-btn"><a href="contact.html" class="btn btn-ghost" style="font-size:0.82rem;padding:10px 18px;">Request</a></div>
+          </div>
+        </div>
+        <div style="margin-top:28px;padding:24px;background:var(--gold-light);border-radius:var(--radius);border-left:4px solid var(--gold);">
+          <p style="font-size:0.9rem;color:var(--dark);">💡 <strong>More guides are being developed by the GHASSA team.</strong> If you'd like to contribute or request a specific guide, please <a href="contact.html">contact us</a>.</p>
+        </div>
+      </div>
+
+      <!-- LINKS TAB -->
+      <div id="tab-links" class="res-section">
+        <div class="res-cat-title">🏛️ Spanish Government & Immigration</div>
+        <div class="resource-list">
+          <div class="resource-item">
+            <div class="resource-icon ri-link">🌐</div>
+            <div class="resource-info">
+              <h4>Ministerio de Inclusión, Seguridad Social y Migraciones</h4>
+              <p>Official Spanish ministry handling immigration and residence permits.</p>
+            </div>
+            <div class="resource-btn"><a href="https://www.inclusion.gob.es/" target="_blank" class="btn btn-green" style="font-size:0.82rem;padding:10px 18px;">Visit →</a></div>
+          </div>
+          <div class="resource-item">
+            <div class="resource-icon ri-link">🌐</div>
+            <div class="resource-info">
+              <h4>Sede Electrónica – Trámites Online</h4>
+              <p>Book TIE appointments and manage all official administrative procedures online.</p>
+            </div>
+            <div class="resource-btn"><a href="https://sede.administracionespublicas.gob.es/" target="_blank" class="btn btn-green" style="font-size:0.82rem;padding:10px 18px;">Visit →</a></div>
+          </div>
+          <div class="resource-item">
+            <div class="resource-icon ri-link">🌐</div>
+            <div class="resource-info">
+              <h4>Cita Previa – Extranjería</h4>
+              <p>Book appointments with the Oficina de Extranjería for immigration matters.</p>
+            </div>
+            <div class="resource-btn"><a href="https://icp.administracionelectronica.gob.es/" target="_blank" class="btn btn-green" style="font-size:0.82rem;padding:10px 18px;">Visit →</a></div>
+          </div>
+        </div>
+
+        <div class="res-cat-title">🎓 Education & Scholarships</div>
+        <div class="resource-list">
+          <div class="resource-item">
+            <div class="resource-icon ri-link">📚</div>
+            <div class="resource-info">
+              <h4>Ministerio de Educación y Formación Profesional</h4>
+              <p>Official ministry for education in Spain. Find scholarships, homologation, and university info.</p>
+            </div>
+            <div class="resource-btn"><a href="https://www.educacion.gob.es/" target="_blank" class="btn btn-green" style="font-size:0.82rem;padding:10px 18px;">Visit →</a></div>
+          </div>
+          <div class="resource-item">
+            <div class="resource-icon ri-link">📚</div>
+            <div class="resource-info">
+              <h4>Becas del Ministerio (MEFP Scholarships)</h4>
+              <p>Official Spanish government scholarships available to students in Spain.</p>
+            </div>
+            <div class="resource-btn"><a href="https://www.becaseducacion.gob.es/" target="_blank" class="btn btn-green" style="font-size:0.82rem;padding:10px 18px;">Visit →</a></div>
+          </div>
+        </div>
+
+        <div class="res-cat-title">🇬🇭 Ghana Resources</div>
+        <div class="resource-list">
+          <div class="resource-item">
+            <div class="resource-icon ri-link">🌍</div>
+            <div class="resource-info">
+              <h4>Ghana Embassy in Spain</h4>
+              <p>Contact details and services from the Ghanaian Embassy in Madrid for consular needs.</p>
+            </div>
+            <div class="resource-btn"><a href="#" class="btn btn-ghost" style="font-size:0.82rem;padding:10px 18px;">Info</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ TAB -->
+      <div id="tab-faq" class="res-section" id="faq">
+        <div class="faq-section">
+          <p style="color:var(--gray);margin-bottom:28px;line-height:1.7;">Answers to the most common questions from Ghanaians living or planning to live in Spain.</p>
+          <div class="faq-list">
+
+            <div class="faq-item">
+              <button class="faq-q">How do I apply for studies in Spain as a Ghanaian?<span class="faq-icon">+</span></button>
+              <div class="faq-a">To study in Spain, you first need to apply and get accepted by a Spanish educational institution. Once accepted, you apply for a student visa (visado de estudios) at the Spanish consulate in Ghana. You'll need: acceptance letter, valid passport, proof of funds, health insurance, and the visa application form. After arriving in Spain, you must apply for your TIE (student residence card) within 30 days.</div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-q">How do I renew my TIE (residence card) in Spain?<span class="faq-icon">+</span></button>
+              <div class="faq-a">You should start the renewal process 60 days before your TIE expires (you can start up to 90 days before). Book an appointment at the Oficina de Extranjería or online via Sede Electrónica. You'll need: current TIE, passport, NIE, proof of enrollment or continued studies, proof of funds, and completed EX-17 form. Fees must be paid using the Modelo 790 form. After submitting, you'll receive a receipt (resguardo) that serves as proof while you wait.</div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-q">How do I get my Ghanaian diploma recognized in Spain (homologación)?<span class="faq-icon">+</span></button>
+              <div class="faq-a">The homologación process is handled by the Ministerio de Educación y Formación Profesional. You need to submit your original degree, official translation into Spanish by a sworn translator, legalization or Apostille of the document, and proof of identity. The process can take several months. GHASSA has compiled resources to guide you through this — check our Downloads section.</div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-q">Can I work in Spain as a student?<span class="faq-icon">+</span></button>
+              <div class="faq-a">Yes! Students in Spain can work up to 30 hours per week without a separate work permit, as long as it doesn't interfere with your studies. Once you've completed your first year of studies in Spain, you can apply for an autorización de trabajo which allows you to work alongside your studies. Make sure to register with the Seguridad Social (Social Security) when you start any job.</div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-q">How do I open a bank account in Spain?<span class="faq-icon">+</span></button>
+              <div class="faq-a">Most Spanish banks require your NIE/TIE, passport, and proof of address. Some good options for international students include BBVA (has an English app), Santander, and digital banks like N26 or Wise which don't require a Spanish address. Wise in particular is very popular with international students as it has no monthly fees and great exchange rates.</div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-q">How do I get healthcare in Spain as a student?<span class="faq-icon">+</span></button>
+              <div class="faq-a">International students with valid residence status can register with the public health system. Go to your local Centro de Salud (health centre) with your TIE, NIE, and proof of address (empadronamiento) to register and get your health card (tarjeta sanitaria). Many student visas also require private health insurance, which covers you from the start.</div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-q">What is empadronamiento and why do I need it?<span class="faq-icon">+</span></button>
+              <div class="faq-a">Empadronamiento is the official registration of your address in Spain at your local Ayuntamiento (town hall). It's required for many things including healthcare registration, certain administrative processes, and proof of residence. You need your passport/TIE and a rental contract or housing document to register. It's completely free.</div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-q">How can I find Ghanaian food and community in Spain?<span class="faq-icon">+</span></button>
+              <div class="faq-a">Spain has a growing Ghanaian community, especially in cities like Madrid, Barcelona, Valencia, and Seville. GHASSA connects you with the community! You can also find African food stores in most major cities — areas near major train stations often have African markets. Join our WhatsApp group to get recommendations from community members in your city.</div>
+            </div>
+
+          </div>
+        </div>
+        <div style="margin-top:32px;background:var(--green-light);border-radius:var(--radius);padding:24px;max-width:760px;">
+          <p style="font-size:0.9rem;color:var(--dark);">❓ <strong>Don't see your question?</strong> Send it to <a href="mailto:ghassa.spain@gmail.com">ghassa.spain@gmail.com</a> or ask in the WhatsApp group — our members are always happy to help!</p>
+        </div>
+      </div>
+
+      <!-- SCHOLARSHIPS TAB -->
+      <div id="tab-scholarships" class="res-section">
+        <p style="color:var(--gray);margin-bottom:28px;line-height:1.7;">Scholarship opportunities available to Ghanaian students in Spain.</p>
+        <div class="resource-list">
+          <div class="resource-item">
+            <div class="resource-icon ri-link">🏆</div>
+            <div class="resource-info">
+              <h4>GHASSA Kit de Becas</h4>
+              <p>Our own compiled guide to scholarships available for Ghanaian and international students in Spain.</p>
+              <div class="res-tags"><span class="tag tag-green">GHASSA Guide</span></div>
+            </div>
+            <div class="resource-btn">
+              <a href="https://drive.google.com/file/d/1D95pW8wew76l3mRaKRQcDLxQ2Ru5Fo2z/view?usp=drive_link" target="_blank" class="btn btn-green" style="font-size:0.82rem;padding:10px 18px;">Open →</a>
+            </div>
+          </div>
+          <div class="resource-item">
+            <div class="resource-icon ri-link">🎓</div>
+            <div class="resource-info">
+              <h4>Spanish Government (MEFP) Scholarships</h4>
+              <p>Annual scholarships from Spain's Ministry of Education for university, Master's, and doctoral students.</p>
+            </div>
+            <div class="resource-btn">
+              <a href="https://www.becaseducacion.gob.es/" target="_blank" class="btn btn-green" style="font-size:0.82rem;padding:10px 18px;">Apply →</a>
+            </div>
+          </div>
+          <div class="resource-item">
+            <div class="resource-icon ri-link">🌍</div>
+            <div class="resource-info">
+              <h4>Erasmus+ Programme</h4>
+              <p>Exchange and mobility scholarships for students enrolled in Spanish universities.</p>
+            </div>
+            <div class="resource-btn">
+              <a href="https://erasmus-plus.ec.europa.eu/" target="_blank" class="btn btn-green" style="font-size:0.82rem;padding:10px 18px;">Learn →</a>
+            </div>
+          </div>
+          <div class="resource-item">
+            <div class="resource-icon ri-link">🏛️</div>
+            <div class="resource-info">
+              <h4>Fundación Carolina</h4>
+              <p>Grants for Latin American and African students for postgraduate studies in Spain.</p>
+            </div>
+            <div class="resource-btn">
+              <a href="https://www.fundacioncarolina.es/" target="_blank" class="btn btn-green" style="font-size:0.82rem;padding:10px 18px;">Learn →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+<script src="ghassa-components.js"></script>
+<script>
+  function showTab(name) {
+    document.querySelectorAll('.res-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.res-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+</body>
+</html>

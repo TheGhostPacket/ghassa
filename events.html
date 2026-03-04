@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events – GHASSA</title>
+  <link rel="stylesheet" href="ghassa.css">
+  <style>
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+    .filter-btn {
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 2px solid var(--border);
+      background: white;
+      color: var(--gray);
+      font-family: var(--font-body);
+      transition: all .2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--green);
+      color: white;
+      border-color: var(--green);
+    }
+    .events-list { display: grid; gap: 20px; }
+    .event-card-full {
+      background: white;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 100px 1fr auto;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .event-card-full:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+    .ecf-date {
+      background: var(--green);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 12px;
+    }
+    .ecf-date .day { font-family: var(--font-head); font-size: 2.2rem; font-weight: 700; line-height: 1; }
+    .ecf-date .month { font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; opacity: 0.85; }
+    .ecf-date .year { font-size: 0.65rem; opacity: 0.6; margin-top: 2px; }
+    .ecf-body { padding: 20px 24px; }
+    .ecf-body h3 { font-family: var(--font-head); font-size: 1.15rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+    .ecf-meta { display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.8rem; color: var(--gray); margin-bottom: 10px; }
+    .ecf-meta span { display: flex; align-items: center; gap: 4px; }
+    .ecf-body p { font-size: 0.88rem; color: var(--gray); line-height: 1.6; }
+    .ecf-action {
+      padding: 20px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-left: 1px solid var(--border);
+    }
+    .past-section { opacity: 0.7; }
+    .past-label {
+      display: inline-block;
+      background: var(--light-gray);
+      color: var(--gray);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 50px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .upcoming-label {
+      display: inline-block;
+      background: var(--green-light);
+      color: var(--green);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 50px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .gold-date { background: var(--gold-dark) !important; }
+    .red-date { background: #e74c3c !important; }
+
+    @media (max-width: 640px) {
+      .event-card-full { grid-template-columns: 80px 1fr; }
+      .ecf-action { display: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a> <span>›</span> <span>Events</span>
+      </div>
+      <h1>Events & Gatherings</h1>
+      <p>Stay updated on GHASSA community events, workshops, and cultural celebrations across Spain.</p>
+    </div>
+  </div>
+
+  <section class="section" style="background:white;">
+    <div class="container">
+
+      <!-- FILTER BAR -->
+      <div class="filter-bar">
+        <button class="filter-btn active">All Events</button>
+        <button class="filter-btn">Community</button>
+        <button class="filter-btn">Academic</button>
+        <button class="filter-btn">Cultural</button>
+        <button class="filter-btn">Networking</button>
+      </div>
+
+      <!-- UPCOMING EVENTS -->
+      <div class="section-label" style="margin-bottom:20px;">📅 Upcoming Events</div>
+      <div class="events-list" style="margin-bottom:48px;">
+
+        <div class="event-card-full">
+          <div class="ecf-date">
+            <span class="day">15</span>
+            <span class="month">Apr</span>
+            <span class="year">2025</span>
+          </div>
+          <div class="ecf-body">
+            <span class="upcoming-label">🟢 Upcoming</span>
+            <h3>GHASSA Community Networking Evening</h3>
+            <div class="ecf-meta">
+              <span>🕕 6:00 PM – 9:00 PM</span>
+              <span>📍 Madrid, España</span>
+              <span>🎟️ Free Entry</span>
+              <span>👥 Community</span>
+            </div>
+            <p>Join us for an evening of connection, networking, and celebration of Ghanaian culture. Meet fellow Ghanaians in Madrid, share experiences, and build lasting friendships. Light refreshments provided.</p>
+          </div>
+          <div class="ecf-action">
+            <a href="contact.html" class="btn btn-green" style="font-size:0.82rem;padding:10px 16px;">RSVP</a>
+            <span style="font-size:0.72rem;color:var(--gray);text-align:center;">Free<br>Event</span>
+          </div>
+        </div>
+
+        <div class="event-card-full">
+          <div class="ecf-date gold-date">
+            <span class="day">28</span>
+            <span class="month">Apr</span>
+            <span class="year">2025</span>
+          </div>
+          <div class="ecf-body">
+            <span class="upcoming-label">🟢 Upcoming</span>
+            <h3>Academic Orientation Workshop – New Students</h3>
+            <div class="ecf-meta">
+              <span>🕑 2:00 PM – 5:00 PM</span>
+              <span>📍 Barcelona</span>
+              <span>🎟️ Members Only</span>
+              <span>🎓 Academic</span>
+            </div>
+            <p>A hands-on workshop covering university registration, NIE, TIE, scholarship applications, and everything a new Ghanaian student in Spain needs to know to get started right.</p>
+          </div>
+          <div class="ecf-action">
+            <a href="membership.html" class="btn btn-green" style="font-size:0.82rem;padding:10px 16px;">Join to RSVP</a>
+            <span style="font-size:0.72rem;color:var(--gray);text-align:center;">Members<br>Only</span>
+          </div>
+        </div>
+
+        <div class="event-card-full">
+          <div class="ecf-date red-date">
+            <span class="day">10</span>
+            <span class="month">May</span>
+            <span class="year">2025</span>
+          </div>
+          <div class="ecf-body">
+            <span class="upcoming-label">🟢 Upcoming</span>
+            <h3>Ghana Culture Day – Music, Food & Heritage</h3>
+            <div class="ecf-meta">
+              <span>🕑 12:00 PM – 8:00 PM</span>
+              <span>📍 Valencia</span>
+              <span>🎟️ Open to All</span>
+              <span>🥁 Cultural</span>
+            </div>
+            <p>Celebrate Ghanaian culture with food, music, dance, traditional attire, and stories. Families, friends, and new faces all welcome. Bring your Ghanaian spirit!</p>
+          </div>
+          <div class="ecf-action">
+            <a href="contact.html" class="btn btn-green" style="font-size:0.82rem;padding:10px 16px;">RSVP</a>
+            <span style="font-size:0.72rem;color:var(--gray);text-align:center;">Open<br>to All</span>
+          </div>
+        </div>
+
+        <div class="event-card-full">
+          <div class="ecf-date">
+            <span class="day">22</span>
+            <span class="month">Jun</span>
+            <span class="year">2025</span>
+          </div>
+          <div class="ecf-body">
+            <span class="upcoming-label">🟢 Upcoming</span>
+            <h3>Professional Development & Career Fair</h3>
+            <div class="ecf-meta">
+              <span>🕙 10:00 AM – 4:00 PM</span>
+              <span>📍 Sevilla</span>
+              <span>🎟️ Free for Members</span>
+              <span>💼 Networking</span>
+            </div>
+            <p>Connect with employers, mentors, and professionals. CV workshops, mock interviews, and networking sessions designed for Ghanaians building careers in Spain.</p>
+          </div>
+          <div class="ecf-action">
+            <a href="contact.html" class="btn btn-green" style="font-size:0.82rem;padding:10px 16px;">Register</a>
+            <span style="font-size:0.72rem;color:var(--gray);text-align:center;">Free for<br>Members</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- PAST EVENTS -->
+      <div class="section-label" style="margin-bottom:20px;">🕐 Past Events</div>
+      <div class="events-list past-section">
+
+        <div class="event-card-full">
+          <div class="ecf-date" style="background:var(--gray);">
+            <span class="day">14</span>
+            <span class="month">Dec</span>
+            <span class="year">2024</span>
+          </div>
+          <div class="ecf-body">
+            <span class="past-label">Past</span>
+            <h3>GHASSA End of Year Celebration 2024</h3>
+            <div class="ecf-meta">
+              <span>📍 Madrid</span>
+              <span>👥 Community</span>
+              <span>✅ Completed</span>
+            </div>
+            <p>A wonderful evening celebrating GHASSA's achievements in 2024 and welcoming the new year together as a community.</p>
+          </div>
+          <div class="ecf-action">
+            <a href="gallery.html" class="btn btn-ghost" style="font-size:0.82rem;padding:10px 16px;">Photos</a>
+          </div>
+        </div>
+
+        <div class="event-card-full">
+          <div class="ecf-date" style="background:var(--gray);">
+            <span class="day">06</span>
+            <span class="month">Mar</span>
+            <span class="year">2024</span>
+          </div>
+          <div class="ecf-body">
+            <span class="past-label">Past</span>
+            <h3>Ghana Independence Day Celebration – 6th March</h3>
+            <div class="ecf-meta">
+              <span>📍 Barcelona</span>
+              <span>🥁 Cultural</span>
+              <span>✅ Completed</span>
+            </div>
+            <p>GHASSA celebrated Ghana's Independence Day with Ghanaians across Spain — traditional food, music and national pride.</p>
+          </div>
+          <div class="ecf-action">
+            <a href="gallery.html" class="btn btn-ghost" style="font-size:0.82rem;padding:10px 16px;">Photos</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SUGGEST AN EVENT -->
+      <div style="margin-top:48px;background:var(--green-light);border-radius:var(--radius-lg);padding:36px;text-align:center;">
+        <span style="font-size:2rem;">💡</span>
+        <h3 style="font-family:var(--font-head);font-size:1.4rem;color:var(--dark);margin:12px 0 8px;">Have an Event Idea?</h3>
+        <p style="color:var(--gray);margin-bottom:24px;line-height:1.6;">GHASSA events are driven by the community. If you have an idea for a workshop, gathering, or cultural event, let us know!</p>
+        <a href="contact.html" class="btn btn-green">Suggest an Event</a>
+      </div>
+
+    </div>
+  </section>
+</div>
+<script src="ghassa-components.js"></script>
+<script>
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News & Updates – GHASSA</title>
+  <link rel="stylesheet" href="ghassa.css">
+  <style>
+    .news-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .news-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform .25s, box-shadow .25s;
+      margin-bottom: 24px;
+    }
+    .news-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+    .news-card-img {
+      width: 100%; height: 200px;
+      background: linear-gradient(135deg, var(--green-light), var(--gold-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+    }
+    .news-card-body { padding: 24px; }
+    .news-meta {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      font-size: 0.78rem; color: var(--gray);
+      margin-bottom: 12px;
+      align-items: center;
+    }
+    .news-card-body h3 {
+      font-family: var(--font-head);
+      font-size: 1.25rem;
+      color: var(--dark);
+      margin-bottom: 10px;
+      line-height: 1.35;
+    }
+    .news-card-body p { font-size: 0.9rem; color: var(--gray); line-height: 1.6; margin-bottom: 16px; }
+
+    .featured-news {
+      background: linear-gradient(135deg, var(--green), var(--green-mid));
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      color: white;
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .featured-news::before {
+      content: '⭐';
+      position: absolute; top: -10px; right: 20px;
+      font-size: 6rem; opacity: 0.1;
+    }
+    .featured-badge {
+      font-size: 0.72rem; font-weight: 800;
+      letter-spacing: 2px; text-transform: uppercase;
+      background: var(--gold); color: var(--dark);
+      padding: 3px 12px; border-radius: 50px;
+      display: inline-block; margin-bottom: 16px;
+    }
+    .featured-news h2 { font-family: var(--font-head); font-size: 1.6rem; margin-bottom: 12px; line-height: 1.3; }
+    .featured-news p { opacity: 0.88; line-height: 1.7; margin-bottom: 20px; }
+
+    .sidebar-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .sidebar-card h3 {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      color: var(--dark);
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--green-light);
+    }
+    .sidebar-news-item {
+      display: flex; gap: 12px; margin-bottom: 14px;
+      padding-bottom: 14px; border-bottom: 1px solid var(--light-gray);
+    }
+    .sidebar-news-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .sidebar-news-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      border-radius: 8px; background: var(--green-light);
+      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+    }
+    .sidebar-news-item h4 { font-size: 0.85rem; font-weight: 700; color: var(--dark); line-height: 1.35; margin-bottom: 4px; }
+    .sidebar-news-item span { font-size: 0.72rem; color: var(--gray); }
+
+    @media (max-width: 768px) {
+      .news-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a> <span>›</span> <span>News</span>
+      </div>
+      <h1>News & Updates</h1>
+      <p>The latest from GHASSA — announcements, achievements, and community stories.</p>
+    </div>
+  </div>
+
+  <section class="section" style="background:white;">
+    <div class="container">
+      <div class="news-grid">
+
+        <!-- MAIN CONTENT -->
+        <div>
+          <!-- FEATURED -->
+          <div class="featured-news">
+            <span class="featured-badge">📣 Latest Announcement</span>
+            <h2>GHASSA is Growing — Welcome to Our New Members!</h2>
+            <p>We're thrilled to announce that GHASSA has grown past 200 members across Spain! Our community continues to expand, with new Ghanaians joining us from cities including Madrid, Barcelona, Valencia, Seville, and Alicante. Thank you to every member for making GHASSA what it is today.</p>
+            <a href="membership.html" class="btn btn-primary">Join the Community →</a>
+          </div>
+
+          <!-- NEWS CARDS -->
+          <div class="news-card">
+            <div class="news-card-img">📋</div>
+            <div class="news-card-body">
+              <div class="news-meta">
+                <span class="tag tag-green">Resources</span>
+                <span>📅 March 2025</span>
+                <span>✍️ GHASSA Team</span>
+              </div>
+              <h3>GHASSA Releases Updated TIE Renewal Guide for 2025</h3>
+              <p>We've updated our step-by-step TIE renewal guide to reflect the latest changes in Spain's immigration procedures. The new guide covers updated appointment booking procedures, required documents, and common mistakes to avoid.</p>
+              <a href="resources.html" class="btn btn-ghost" style="font-size:0.85rem;padding:10px 18px;">Read More →</a>
+            </div>
+          </div>
+
+          <div class="news-card">
+            <div class="news-card-img">🎉</div>
+            <div class="news-card-body">
+              <div class="news-meta">
+                <span class="tag tag-gold">Events</span>
+                <span>📅 December 2024</span>
+                <span>✍️ GHASSA Team</span>
+              </div>
+              <h3>GHASSA End of Year Celebration 2024 – A Night to Remember</h3>
+              <p>Over 80 members gathered in Madrid for our End of Year celebration. An evening filled with Ghanaian food, music, dancing, and the warmth of community. We look forward to even bigger events in 2025!</p>
+              <a href="gallery.html" class="btn btn-ghost" style="font-size:0.85rem;padding:10px 18px;">See Photos →</a>
+            </div>
+          </div>
+
+          <div class="news-card">
+            <div class="news-card-img">🎓</div>
+            <div class="news-card-body">
+              <div class="news-meta">
+                <span class="tag tag-green">Academic</span>
+                <span>📅 October 2024</span>
+                <span>✍️ GHASSA Team</span>
+              </div>
+              <h3>New Scholarship Kit Available – Kit de Becas 2024/2025</h3>
+              <p>GHASSA has compiled a new scholarship guide for the 2024/2025 academic year, covering all major scholarships available to Ghanaian and international students in Spain, including MEFP and Erasmus+ opportunities.</p>
+              <a href="resources.html" class="btn btn-ghost" style="font-size:0.85rem;padding:10px 18px;">Download →</a>
+            </div>
+          </div>
+
+          <div class="news-card">
+            <div class="news-card-img">🇬🇭</div>
+            <div class="news-card-body">
+              <div class="news-meta">
+                <span class="tag tag-gold">Cultural</span>
+                <span>📅 March 2024</span>
+                <span>✍️ GHASSA Team</span>
+              </div>
+              <h3>Ghana Independence Day Celebration – GHASSA Marks 6th March in Style</h3>
+              <p>GHASSA celebrated Ghana's 67th Independence Day with members across Barcelona. Traditional food, music, and an outpouring of national pride made this one of our most memorable gatherings yet.</p>
+              <a href="gallery.html" class="btn btn-ghost" style="font-size:0.85rem;padding:10px 18px;">See Photos →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <div>
+          <!-- RECENT NEWS -->
+          <div class="sidebar-card">
+            <h3>📰 Quick Updates</h3>
+            <div class="sidebar-news-item">
+              <div class="sidebar-news-icon">📅</div>
+              <div>
+                <h4>Upcoming: Cultural Day in Valencia – May 2025</h4>
+                <span>April 2025</span>
+              </div>
+            </div>
+            <div class="sidebar-news-item">
+              <div class="sidebar-news-icon">📋</div>
+              <div>
+                <h4>TIE Renewal Guide Updated for 2025</h4>
+                <span>March 2025</span>
+              </div>
+            </div>
+            <div class="sidebar-news-item">
+              <div class="sidebar-news-icon">🌟</div>
+              <div>
+                <h4>GHASSA crosses 200 members!</h4>
+                <span>February 2025</span>
+              </div>
+            </div>
+            <div class="sidebar-news-item">
+              <div class="sidebar-news-icon">🎓</div>
+              <div>
+                <h4>New scholarship deadline: April 30, 2025</h4>
+                <span>February 2025</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- FOLLOW US -->
+          <div class="sidebar-card">
+            <h3>📲 Follow Us</h3>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <a href="https://www.instagram.com/ghassa.es/" target="_blank" class="btn btn-green" style="justify-content:center;">📸 Instagram @ghassa.es</a>
+              <a href="https://www.linkedin.com/company/ghassa/" target="_blank" class="btn btn-ghost" style="justify-content:center;">💼 LinkedIn</a>
+              <a href="#" class="btn btn-ghost" style="justify-content:center;">👥 Facebook</a>
+            </div>
+          </div>
+
+          <!-- CONTRIBUTE -->
+          <div class="sidebar-card" style="background:var(--green);border-color:var(--green);color:white;">
+            <h3 style="color:white;border-bottom-color:rgba(255,255,255,0.2);">✍️ Share Your Story</h3>
+            <p style="font-size:0.88rem;opacity:0.88;line-height:1.6;margin-bottom:16px;">Are you a GHASSA member with a story, achievement, or tip to share? We'd love to feature you!</p>
+            <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;font-size:0.88rem;">Submit Your Story</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>
+<script src="ghassa-components.js"></script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery – GHASSA</title>
+  <link rel="stylesheet" href="ghassa.css">
+  <style>
+    .gallery-tabs {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px;
+    }
+    .gallery-tab {
+      padding: 8px 20px; border-radius: 50px;
+      font-weight: 700; font-size: 0.85rem; cursor: pointer;
+      border: 2px solid var(--border); background: white;
+      color: var(--gray); font-family: var(--font-body); transition: all .2s;
+    }
+    .gallery-tab.active, .gallery-tab:hover {
+      background: var(--green); color: white; border-color: var(--green);
+    }
+    .masonry {
+      columns: 3;
+      column-gap: 16px;
+    }
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 16px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      background: var(--green-light);
+    }
+    .masonry-item img {
+      width: 100%; display: block;
+      transition: transform .4s;
+    }
+    .masonry-item:hover img { transform: scale(1.06); }
+    .masonry-placeholder {
+      width: 100%;
+      background: linear-gradient(135deg, var(--green-light), var(--gold-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 8px;
+      color: var(--green);
+      font-size: 2.5rem;
+      padding: 40px 20px;
+    }
+    .masonry-placeholder span {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--gray);
+      text-align: center;
+    }
+    .masonry-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(6,92,51,0.65) 0%, transparent 55%);
+      opacity: 0; transition: opacity .3s;
+      display: flex; align-items: flex-end;
+      padding: 16px; color: white;
+    }
+    .masonry-overlay p { font-size: 0.85rem; font-weight: 600; line-height: 1.3; }
+    .masonry-item:hover .masonry-overlay { opacity: 1; }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-inner {
+      max-width: 800px; width: 100%;
+      position: relative;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: -40px; right: 0;
+      background: none; border: none;
+      color: white; font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .lightbox-img {
+      width: 100%; border-radius: var(--radius);
+      min-height: 200px;
+      background: var(--dark-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+    }
+    .lightbox-caption {
+      color: rgba(255,255,255,0.8);
+      text-align: center;
+      margin-top: 12px;
+      font-size: 0.9rem;
+    }
+
+    .upload-notice {
+      background: var(--gold-light);
+      border: 2px dashed var(--gold);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .upload-notice h3 {
+      font-family: var(--font-head);
+      font-size: 1.3rem;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .upload-notice p { color: var(--gray); font-size: 0.9rem; line-height: 1.6; }
+
+    @media (max-width: 768px) { .masonry { columns: 2; } }
+    @media (max-width: 480px) { .masonry { columns: 1; } }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a> <span>›</span> <span>Gallery</span>
+      </div>
+      <h1>Our Gallery</h1>
+      <p>Moments captured — events, gatherings, cultural celebrations, and the people who make GHASSA special.</p>
+    </div>
+  </div>
+
+  <section class="section" style="background:white;">
+    <div class="container">
+
+      <!-- UPLOAD NOTICE -->
+      <div class="upload-notice">
+        <span style="font-size:2rem;">📸</span>
+        <h3>Gallery Photos Coming Soon!</h3>
+        <p>We're collecting photos from our events and activities. Have photos to share? Send them to <a href="mailto:ghassa.spain@gmail.com">ghassa.spain@gmail.com</a> and we'll add them to the gallery.<br>
+        <strong>Note to admin:</strong> Replace the placeholder items below with real photos by updating the <code>src</code> attributes.</p>
+      </div>
+
+      <!-- TABS -->
+      <div class="gallery-tabs">
+        <button class="gallery-tab active" onclick="filterGallery('all', this)">All</button>
+        <button class="gallery-tab" onclick="filterGallery('events', this)">Events</button>
+        <button class="gallery-tab" onclick="filterGallery('cultural', this)">Cultural</button>
+        <button class="gallery-tab" onclick="filterGallery('team', this)">Team</button>
+        <button class="gallery-tab" onclick="filterGallery('community', this)">Community</button>
+      </div>
+
+      <!-- MASONRY GRID -->
+      <div class="masonry" id="galleryGrid">
+
+        <div class="masonry-item" data-cat="events">
+          <div class="masonry-placeholder" style="height:260px;">🎉<span>Community Networking Event</span></div>
+          <div class="masonry-overlay"><p>GHASSA Networking Evening 2024</p></div>
+        </div>
+        <div class="masonry-item" data-cat="cultural">
+          <div class="masonry-placeholder" style="height:200px;">🇬🇭<span>Ghana Independence Day 2024</span></div>
+          <div class="masonry-overlay"><p>Ghana Independence Day Celebration</p></div>
+        </div>
+        <div class="masonry-item" data-cat="team">
+          <div class="masonry-placeholder" style="height:220px;">👥<span>Executive Team</span></div>
+          <div class="masonry-overlay"><p>GHASSA Executive Team 2024</p></div>
+        </div>
+        <div class="masonry-item" data-cat="community">
+          <div class="masonry-placeholder" style="height:240px;">🤝<span>Community Gathering</span></div>
+          <div class="masonry-overlay"><p>Community Gathering – Madrid</p></div>
+        </div>
+        <div class="masonry-item" data-cat="cultural">
+          <div class="masonry-placeholder" style="height:280px;">🥁<span>Cultural Celebration</span></div>
+          <div class="masonry-overlay"><p>Ghanaian Cultural Day</p></div>
+        </div>
+        <div class="masonry-item" data-cat="events">
+          <div class="masonry-placeholder" style="height:200px;">🎓<span>Academic Workshop</span></div>
+          <div class="masonry-overlay"><p>Academic Orientation Workshop</p></div>
+        </div>
+        <div class="masonry-item" data-cat="community">
+          <div class="masonry-placeholder" style="height:230px;">🌍<span>Members Together</span></div>
+          <div class="masonry-overlay"><p>GHASSA Members – Barcelona</p></div>
+        </div>
+        <div class="masonry-item" data-cat="events">
+          <div class="masonry-placeholder" style="height:260px;">🎊<span>End of Year Party</span></div>
+          <div class="masonry-overlay"><p>End of Year Celebration 2024</p></div>
+        </div>
+        <div class="masonry-item" data-cat="team">
+          <div class="masonry-placeholder" style="height:210px;">⭐<span>President's Address</span></div>
+          <div class="masonry-overlay"><p>President's Address – GHASSA Annual Meeting</p></div>
+        </div>
+
+      </div>
+
+      <!-- SHARE PHOTOS CTA -->
+      <div style="margin-top:48px;background:var(--green-light);border-radius:var(--radius-lg);padding:36px;text-align:center;">
+        <span style="font-size:2rem;">📷</span>
+        <h3 style="font-family:var(--font-head);font-size:1.4rem;color:var(--dark);margin:12px 0 8px;">Share Your GHASSA Moments</h3>
+        <p style="color:var(--gray);line-height:1.6;margin-bottom:24px;">Been to a GHASSA event? Share your photos with us and be featured in the gallery! Tag us on Instagram <strong>@ghassa.es</strong> or email your photos.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <a href="https://www.instagram.com/ghassa.es/" target="_blank" class="btn btn-green">📸 Instagram</a>
+          <a href="mailto:ghassa.spain@gmail.com" class="btn btn-ghost">📧 Email Photos</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="document.getElementById('lightbox').classList.remove('open')">✕</button>
+    <div class="lightbox-img" id="lightboxContent">🖼️</div>
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+  </div>
+</div>
+
+<script src="ghassa-components.js"></script>
+<script>
+  function filterGallery(cat, btn) {
+    document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.masonry-item').forEach(item => {
+      if (cat === 'all' || item.dataset.cat === cat) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  document.querySelectorAll('.masonry-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const caption = item.querySelector('.masonry-overlay p')?.textContent || '';
+      document.getElementById('lightboxCaption').textContent = caption;
+      document.getElementById('lightbox').classList.add('open');
+    });
+  });
+
+  function closeLightbox(e) {
+    if (e.target.id === 'lightbox') {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
+  });
+</script>
+</body>
+</html>

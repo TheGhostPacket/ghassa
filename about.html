@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us – GHASSA</title>
+  <link rel="stylesheet" href="ghassa.css">
+  <style>
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .story-img-block {
+      background: linear-gradient(145deg, var(--green-light), var(--gold-light));
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      text-align: center;
+      font-size: 6rem;
+      line-height: 1;
+      position: relative;
+    }
+    .story-img-block::after {
+      content: 'Est. 2023';
+      position: absolute;
+      bottom: 20px; right: 24px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--green);
+      background: white;
+      padding: 4px 12px;
+      border-radius: 50px;
+    }
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px; top: 4px; bottom: 4px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--green), var(--gold));
+    }
+    .timeline-item {
+      position: relative;
+      padding-bottom: 28px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -28px; top: 4px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--green);
+      border: 2px solid white;
+      box-shadow: 0 0 0 2px var(--green);
+    }
+    .timeline-item:last-child::before { background: var(--gold); box-shadow: 0 0 0 2px var(--gold); }
+    .timeline-year {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 4px;
+    }
+    .timeline-item h4 {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+    .timeline-item p { font-size: 0.88rem; color: var(--gray); line-height: 1.6; }
+
+    .mission-cards {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 24px;
+    }
+    .mission-card {
+      text-align: center;
+      padding: 32px 20px;
+      border-radius: var(--radius-lg);
+      transition: all .3s;
+    }
+    .mission-card:hover { transform: translateY(-4px); }
+    .mission-card .icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+      width: 72px; height: 72px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .mission-card h3 {
+      font-family: var(--font-head);
+      font-size: 1.15rem;
+      margin-bottom: 12px;
+      color: var(--dark);
+    }
+    .mission-card p { font-size: 0.9rem; line-height: 1.65; color: var(--gray); }
+    .card-green { background: var(--green-light); }
+    .card-green .icon { background: var(--green); color: white; }
+    .card-gold { background: var(--gold-light); }
+    .card-gold .icon { background: var(--gold); color: var(--dark); }
+    .card-dark { background: #f0f4f2; }
+    .card-dark .icon { background: var(--dark); color: white; }
+
+    .contact-strip {
+      background: var(--green);
+      padding: 40px 24px;
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      color: white;
+    }
+    .contact-strip h3 {
+      font-family: var(--font-head);
+      font-size: 1.5rem;
+      margin-bottom: 4px;
+    }
+    .contact-strip p { opacity: 0.85; font-size: 0.95rem; }
+
+    @media (max-width: 768px) {
+      .story-grid { grid-template-columns: 1fr; }
+      .mission-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a> <span>›</span> <span>About</span>
+      </div>
+      <h1>About GHASSA</h1>
+      <p>Learn who we are, why we exist, and what drives our community forward every single day.</p>
+    </div>
+  </div>
+
+  <!-- OUR STORY -->
+  <section class="section" style="background:white;">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-img-block fade-up">
+          🇬🇭<br>
+          <span style="font-size:2rem;">✦</span><br>🇪🇸
+        </div>
+        <div>
+          <div class="section-label">Our Story</div>
+          <h2 class="section-title">From a Shared Need to a <span class="gold">Thriving Community</span></h2>
+          <p style="color:var(--gray);line-height:1.8;margin-bottom:16px;">
+            GHASSA was born out of a simple but powerful reality: Ghanaians arriving in Spain often faced the same challenges — navigating immigration paperwork, understanding the education system, finding work, and simply feeling at home in a new country.
+          </p>
+          <p style="color:var(--gray);line-height:1.8;margin-bottom:24px;">
+            In 2023, a group of passionate Ghanaian students and professionals decided to change that. They formed GHASSA — Ghanaian Students in Spain Alliance — to create a structured, welcoming, and resourceful community for every Ghanaian in Spain.
+          </p>
+          <p style="color:var(--gray);line-height:1.8;margin-bottom:32px;">
+            Today, GHASSA supports hundreds of Ghanaians across Spain with events, guides, networking, and a warm community that never lets you feel alone.
+          </p>
+          <a href="team.html" class="btn btn-green">Meet Our Team →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION, VISION, OBJECTIVES -->
+  <section class="section bg-green-light">
+    <div class="container">
+      <div class="section-header centered">
+        <div class="section-label">What Drives Us</div>
+        <h2 class="section-title">Mission, Vision <span class="gold">&amp; Objectives</span></h2>
+      </div>
+      <div class="mission-cards">
+        <div class="mission-card card-green fade-up-1">
+          <div class="icon">🎯</div>
+          <h3>Our Mission</h3>
+          <p>To connect, support, and empower Ghanaian students and professionals in Spain through shared information, opportunities, and experiences — helping each member thrive in their new home.</p>
+        </div>
+        <div class="mission-card card-gold fade-up-2">
+          <div class="icon">🌟</div>
+          <h3>Our Vision</h3>
+          <p>A Spain where every Ghanaian — regardless of background or status — has access to a strong, informed community and the resources to build a successful, fulfilling life.</p>
+        </div>
+        <div class="mission-card card-dark fade-up-3">
+          <div class="icon">📋</div>
+          <h3>Our Objectives</h3>
+          <p>Provide academic & administrative support, facilitate professional networking, celebrate Ghanaian culture, and serve as a trusted information hub for Ghanaians across Spain.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="section" style="background:white;">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
+        <div>
+          <div class="section-label">Our Journey</div>
+          <h2 class="section-title">GHASSA <span class="gold">Timeline</span></h2>
+          <p style="color:var(--gray);line-height:1.7;margin-bottom:36px;">From a small group of friends to a growing national community — here's how GHASSA was built.</p>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-year">2023 – Q1</div>
+              <h4>The Idea is Born</h4>
+              <p>A group of Ghanaian students in Spain identify the need for a structured community support system and begin organizing.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2023 – Q2</div>
+              <h4>GHASSA Founded</h4>
+              <p>GHASSA is officially registered as a non-profit organisation in Spain with its first executive team in place.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2023 – Q3</div>
+              <h4>First Community Events</h4>
+              <p>GHASSA hosts its first networking and orientation events, welcoming new Ghanaian students to Spain.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2023 – Q4</div>
+              <h4>Resource Hub Launched</h4>
+              <p>The GHASSA Kit de Becas and academic orientation resources are compiled and shared with the community.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2024 – Now</div>
+              <h4>Growing Strong</h4>
+              <p>Membership grows past 200, more cities are reached, and GHASSA continues expanding its support services.</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="section-label">What We Offer</div>
+          <h2 class="section-title">How We <span class="gold">Help You</span></h2>
+          <div style="display:grid;gap:16px;margin-top:24px;">
+            <div class="card" style="display:flex;gap:16px;align-items:flex-start;">
+              <span style="font-size:1.5rem;flex-shrink:0;">🎓</span>
+              <div>
+                <h4 style="font-weight:700;margin-bottom:6px;">Academic Guidance</h4>
+                <p style="font-size:0.88rem;color:var(--gray);">Help navigating Spanish universities, homologation of diplomas, and scholarship applications.</p>
+              </div>
+            </div>
+            <div class="card" style="display:flex;gap:16px;align-items:flex-start;">
+              <span style="font-size:1.5rem;flex-shrink:0;">🏛️</span>
+              <div>
+                <h4 style="font-weight:700;margin-bottom:6px;">Administrative Support</h4>
+                <p style="font-size:0.88rem;color:var(--gray);">Step-by-step guides for TIE renewal, NIE registration, residence permits, and more.</p>
+              </div>
+            </div>
+            <div class="card" style="display:flex;gap:16px;align-items:flex-start;">
+              <span style="font-size:1.5rem;flex-shrink:0;">💼</span>
+              <div>
+                <h4 style="font-weight:700;margin-bottom:6px;">Professional Networking</h4>
+                <p style="font-size:0.88rem;color:var(--gray);">Connecting members with job opportunities, mentors, and career events across Spain.</p>
+              </div>
+            </div>
+            <div class="card" style="display:flex;gap:16px;align-items:flex-start;">
+              <span style="font-size:1.5rem;flex-shrink:0;">🥁</span>
+              <div>
+                <h4 style="font-weight:700;margin-bottom:6px;">Cultural Events</h4>
+                <p style="font-size:0.88rem;color:var(--gray);">Celebrating Ghanaian traditions, festivals, and culture in Spain to keep our identity alive.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT STRIP -->
+  <section class="section-sm" style="background:var(--green-light);">
+    <div class="container">
+      <div class="contact-strip">
+        <div>
+          <h3>Have Questions About GHASSA?</h3>
+          <p>We'd love to hear from you. Reach out and we'll get back to you quickly.</p>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="contact.html" class="btn btn-primary">Contact Us</a>
+          <a href="membership.html" class="btn btn-outline">Join Today</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script src="ghassa-components.js"></script>
+</body>
+</html>
