@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GHASSA - Ghanaian Students in Spain Alliance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --ghana-red: #CE1126;
+            --ghana-gold: #FFD700;
+            --ghana-green: #007A33;
+            --dark-bg: #1a1a1a;
+            --light-bg: #f8f9fa;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --shadow-hover: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--ghana-red), var(--ghana-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--ghana-gold);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--ghana-gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--ghana-red);
+            transition: 0.3s;
+        }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(206,17,38,0.1) 0%, rgba(255,215,0,0.1) 50%, rgba(0,122,51,0.1) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--ghana-red), var(--ghana-gold), var(--ghana-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--ghana-gold), #ffed4a);
+            color: var(--dark-bg);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--ghana-gold);
+            border: 2px solid var(--ghana-gold);
+        }
+
+        .btn-secondary:hover {
+            background: var(--ghana-gold);
+            color: var(--dark-bg);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--ghana-red), var(--ghana-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Stats */
+        .stats {
+            background: var(--light-bg);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            color: var(--ghana-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Features grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s;
+            height: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--ghana-gold), #ffed4a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--dark-bg);
+        }
+
+        /* Executives */
+        .executives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .executive-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .executive-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .executive-photo {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--ghana-red), var(--ghana-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ghana-gold);
+            font-size: 4rem;
+        }
+
+        .executive-info {
+            padding: 1.5rem;
+        }
+
+        .executive-role {
+            color: var(--ghana-gold);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Events */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .event-card {
+            background: white;
+            border-left: 5px solid var(--ghana-gold);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .event-date {
+            background: var(--ghana-green);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--ghana-red), var(--ghana-gold));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* Forms */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--ghana-gold);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            color: var(--white);
+            padding: 3rem 2rem 1.5rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--ghana-gold);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                justify-content: start;
+                align-items: center;
+                padding-top: 2rem;
+                transition: 0.3s;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+        }
+
+        /* Language selector */
+        .lang-selector {
+            position: absolute;
+            right: 2rem;
+            top: 1.5rem;
+        }
+
+        .lang-selector select {
+            background: rgba(255,255,255,0.9);
+            border: 1px solid rgba(255,255,255,0.5);
+            padding: 0.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">GHASSA</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#leadership">Leadership</a></li>
+                <li><a href="#membership">Membership</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#documents">Documents</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="lang-selector">
+                <select id="langSelect">
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                    <option value="tw">Twi</option>
+                </select>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Ghanaian Students in Spain Alliance</h1>
+            <p>Connecting Ghanaian students and professionals across Spain. Community, support, and opportunities for success.</p>
+            <div class="cta-buttons">
+                <a href="#membership" class="btn btn-primary"><i class="fas fa-user-plus"></i> Join GHASSA</a>
+                <a href="#resources" class="btn btn-secondary"><i class="fas fa-download"></i> Get Resources</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats" id="stats">
+        <div class="stat-item">
+            <h3>500+</h3>
+            <p>Members</p>
+        </div>
+        <div class="stat-item">
+            <h3>5</h3>
+            <p>Cities</p>
+        </div>
+        <div class="stat-item">
+            <h3>25+</h3>
+            <p>Events</p>
+        </div>
+        <div class="stat-item">
+            <h3>2023</h3>
+            <p>Founded</p>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features">
+        <h2 class="section-title">What We Do</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-graduation-cap"></i></div>
+                <h3>Academic Support</h3>
+                <p>Scholarships, university applications, and study guidance for Ghanaian students in Spain.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-users"></i></div>
+                <h3>Community Building</h3>
+                <p>Cultural events, networking, and social gatherings to celebrate Ghanaian heritage.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-briefcase"></i></div>
+                <h3>Professional Network</h3>
+                <p>Internships, job opportunities, and career development for students and alumni.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" style="background: var(--light-bg);">
+        <h2 class="section-title">About GHASSA</h2>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center; padding: 0 2rem;">
+            <p><strong>Our Purpose:</strong> GHASSA is a vibrant community of Ghanaian students and professionals in Spain, promoting unity, mutual support, and celebration of our rich Ghanaian heritage.</p>
+            <br>
+            <p>We connect, support, and empower members by sharing information, opportunities, and experiences, and by providing a platform for academic, professional, and social networking.</p>
+            <br>
+            <p><strong>What We Offer:</strong> Updates on academic and professional opportunities, life and culture advice, a space to network on achievements. Respect and guidelines are paramount. Be positive and engage constructively.</p>
+        </div>
+    </section>
+
+    <!-- Leadership -->
+    <section id="leadership">
+        <h2 class="section-title">Leadership</h2>
+        <div class="executives-grid">
+            <div class="executive-card">
+                <div class="executive-photo">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="executive-info">
+                    <h3>Abigail Adu Asamoah</h3>
+                    <div class="executive-role">President</div>
+                    <p>Visionary leader driving GHASSA's growth and community impact.</p>
+                    <a href="https://www.linkedin.com/in/abigail-adu-asamoah/" target="_blank" class="btn btn-secondary" style="font-size: 0.9rem; margin-top: 1rem; display: inline-block;"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                </div>
+            </div>
+            <div class="executive-card">
+                <div class="executive-photo">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="executive-info">
+                    <h3>Juliana Afriyie Berko</h3>
+                    <div class="executive-role">Vice President</div>
+                    <p>Dedicated to member support and event coordination.</p>
+                    <a href="https://www.linkedin.com/in/juliana-afriyie-berko-074701247/" target="_blank" class="btn btn-secondary" style="font-size: 0.9rem; margin-top: 1rem; display: inline-block;"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                </div>
+            </div>
+            <div class="executive-card">
+                <div class="executive-photo">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="executive-info">
+                    <h3>Juanita Sabeng Amoateng</h3>
+                    <div class="executive-role">Secretary</div>
+                    <p>Organizing communications and administrative excellence.</p>
+                    <a href="https://www.linkedin.com/in/juanita-sabeng-amoateng-8b5999339/" target="_blank" class="btn btn-secondary" style="font-size: 0.9rem; margin-top: 1rem; display: inline-block;"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                </div>
+            </div>
+            <!-- Add 3 more cards here when you provide details -->
+        </div>
+    </section>
+
+    <!-- Upcoming Events -->
+    <section id="events" style="background: var(--light-bg);">
+        <h2 class="section-title">Upcoming Events</h2>
+        <div class="events-grid">
+            <div class="event-card">
+                <div class="event-date">Mar 15, 2026</div>
+                <h3>Student Orientation Workshop</h3>
+                <p>Complete guide to TIE renewal, empadronamiento, and part-time work rules. Madrid.</p>
+                <a href="#" class="btn btn-primary" style="margin-top: 1rem;">Details</a>
+            </div>
+            <div class="event-card">
+                <div class="event-date">Apr 10, 2026</div>
+                <h3>Ghana-Spain Education Fair</h3>
+                <p>Meet universities, scholarships, and alumni. Barcelona.</p>
+                <a href="#" class="btn btn-primary" style="margin-top: 1rem;">RSVP</a>
+            </div>
+            <div class="event-card">
+                <div class="event-date">May 1, 2026</div>
+                <h3>Cultural Night & Networking</h3>
+                <p>Ghanaian food, music, and professional networking. Valencia.</p>
+                <a href="#" class="btn btn-primary" style="margin-top: 1rem;">Join</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery">
+        <h2 class="section-title">Gallery</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item"><i class="fas fa-camera"></i></div>
+            <div class="gallery-item"><i class="fas fa-users"></i></div>
+            <div class="gallery-item"><i class="fas fa-star"></i></div>
+            <div class="gallery-item"><i class="fas fa-flag"></i></div>
+            <div class="gallery-item"><i class="fas fa-heart"></i></div>
+            <div class="gallery-item"><i class="fas fa-trophy"></i></div>
+        </div>
+    </section>
+
+    <!-- Resources -->
+    <section id="resources" style="background: var(--light-bg);">
+        <h2 class="section-title">Resources</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-question-circle"></i> FAQ</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 1rem;"><strong>How to renew TIE?</strong><br>Step-by-step guide available in Documents.</li>
+                    <li style="margin-bottom: 1rem;"><strong>Can I work as a student?</strong><br>Up to 30 hours/week during studies.</li>
+                    <li><strong>How to apply for scholarships?</strong><br>Check our KIT DE BECAS folder.</li>
+                </ul>
+            </div>
+            <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-download"></i> Quick Links</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="https://drive.google.com/drive/folders/..." target="_blank" style="color: var(--ghana-green);">KIT DE BECAS – GHASSA</a></li>
+                    <li><a href="https://drive.google.com/drive/folders/..." target="_blank" style="color: var(--ghana-green);">Academic Orientation</a></li>
+                    <li><a href="#" style="color: var(--ghana-green);">Legal Documents</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documents -->
+    <section id="documents">
+        <h2 class="section-title">Documents & Downloads</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: var(--shadow);">
+                <h3>Scholarships</h3>
+                <a href="#" class="btn btn-primary"><i class="fas fa-folder-open"></i> KIT DE BECAS</a>
+            </div>
+            <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: var(--shadow);">
+                <h3>Legal Guides</h3>
+                <a href="#" class="btn btn-primary"><i class="fas fa-folder-open"></i> TIE & Residency</a>
+            </div>
+            <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: var(--shadow);">
+                <h3>Templates</h3>
+                <a href="#" class="btn btn-primary"><i class="fas fa-folder-open"></i> Forms & Letters</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership -->
+    <section id="membership" style="background: var(--light-bg);">
+        <h2 class="section-title">Join GHASSA</h2>
+        <div class="form-container">
+            <h3>Quick Membership Form</h3>
+            <form id="membershipForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone/WhatsApp</label>
+                    <input type="tel" name="phone">
+                </div>
+                <div class="form-group">
+                    <label>City in Spain</label>
+                    <select name="city">
+                        <option>Madrid</option>
+                        <option>Barcelona</option>
+                        <option>Valencia</option>
+                        <option>Sevilla</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Student / Professional</label>
+                    <select name="status">
+                        <option>Student</option>
+                        <option>Professional</option>
+                        <option>Alumni</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea rows="4" name="message" placeholder="Tell us about yourself..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Join GHASSA</button>
+            </form>
+
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e1e5e9;">
+                <h3>Official Google Form</h3>
+                <iframe src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="form-container">
+            <form id="contactForm">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input type="text" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea rows="6" name="message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h3>GHASSA</h3>
+                <p>Ghanaian Students in Spain Alliance</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul style="list-style: none;">
+                    <li><a href="#membership" style="color: #ccc;">Join Us</a></li>
+                    <li><a href="#resources" style="color: #ccc;">Resources</a></li>
+                    <li><a href="#events" style="color: #ccc;">Events</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Newsletter</h4>
+                <p>Stay updated with events and opportunities.</p>
+                <form style="display: flex; gap: 0.5rem;">
+                    <input type="email" placeholder="Your email" style="flex: 1; padding: 0.7rem; border-radius: 25px; border: none;">
+                    <button type="submit" class="btn btn-primary" style="padding: 0.7rem 1.5rem; font-size: 0.9rem;">Subscribe</button>
+                </form>
+            </div>
+            <div>
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="https://instagram.com/ghassa.es" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://linkedin.com/company/ghassa" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://tiktok.com/@ghassa.es" target="_blank"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: #999;">
+            <p>&copy; 2026 GHASSA. All rights reserved. | contact@theghostpacket.com</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Form submissions (demo - shows alert, later connect to EmailJS)
+        document.getElementById('membershipForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for joining GHASSA! We\'ll contact you soon at ' + this.email.value);
+            this.reset();
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Message sent to contact@theghostpacket.com! We\'ll reply within 48 hours.');
+            this.reset();
+        });
+
+        // Newsletter demo
+        document.querySelector('footer form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Subscribed to GHASSA newsletter!');
+            this.querySelector('input[type="email"]').value = '';
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255,255,255,0.98)';
+            } else {
+                header.style.background = 'rgba(255,255,255,0.95)';
+            }
+        });
+
+        // Gallery lightbox (simple demo)
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                alert('Photo gallery coming soon! Add your images here.');
+            });
+        });
+    </script>
+</body>
+</html>
