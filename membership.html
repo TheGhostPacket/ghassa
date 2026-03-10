@@ -33,33 +33,23 @@
       gap: 40px;
       align-items: start;
     }
-    .-card {
+    .form-card {
       background: white;
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       overflow: hidden;
       box-shadow: var(--shadow);
     }
-    .-card-header {
+    .form-card-header {
       padding: 24px;
       background: var(--green);
       color: white;
     }
-    .-card-header h3 { font-family: var(--font-head); font-size: 1.2rem; margin-bottom: 4px; }
-    .-card-header p { font-size: 0.85rem; opacity: 0.85; }
-    .-card-body { padding: 28px; }
+    .form-card-header h3 { font-family: var(--font-head); font-size: 1.2rem; margin-bottom: 4px; }
+    .form-card-header p { font-size: 0.85rem; opacity: 0.85; }
+    .form-card-body { padding: 28px; }
 
-    .google--embed {
-      background: var(--green-light);
-      border: 2px dashed var(--green);
-      border-radius: var(--radius);
-      padding: 40px 24px;
-      text-align: center;
-      color: var(--green);
-    }
-    .google--embed span { font-size: 2.5rem; display: block; margin-bottom: 12px; }
-    .google--embed p { font-size: 0.88rem; color: var(--gray); line-height: 1.6; }
-
+    /* success message shown after Formspree redirect */
     .success-msg {
       display: none;
       background: var(--green-light);
@@ -74,7 +64,7 @@
 
     @media (max-width: 768px) {
       .benefits-grid { grid-template-columns: 1fr; }
-      .s-container { grid-template-columns: 1fr; }
+      .forms-container { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -159,54 +149,79 @@
     </div>
   </section>
 
-  <!-- S -->
+  <!-- FORMS -->
   <section class="section" style="background:white;">
     <div class="container">
       <div class="section-header centered">
         <div class="section-label">Ready to Join?</div>
         <h2 class="section-title">Sign Up <span class="gold">Today</span></h2>
-        <p class="section-subtitle">Choose your preferred way to join — either fill in the quick  below or complete the full membership form.</p>
+        <p class="section-subtitle">Choose your preferred way to join — fill in the quick form or complete the full membership form.</p>
       </div>
 
       <div class="forms-container">
 
-        <!-- CONTACT FORM -->
+        <!-- ── QUICK JOIN FORM (Formspree) ── -->
         <div class="form-card">
           <div class="form-card-header">
             <h3>✉️ Quick Join Form</h3>
             <p>Fast sign-up — we'll reach out to welcome you!</p>
           </div>
           <div class="form-card-body">
-            <form id="joinForm" action="https://formspree.io/f/mwvrlrak" method="POST">
+
+            <!--
+              FORMSPREE: every input MUST have a name="" attribute
+              so Formspree knows what label to use in the email.
+            -->
+            <form action="https://formspree.io/f/mwvrlrak" method="POST">
+
+              <!-- hidden field so Formspree email subject is clear -->
+              <input type="hidden" name="_subject" value="New GHASSA Membership Application">
+
               <div class="form-group">
                 <label class="form-label">Full Name *</label>
-                <input type="text" class="form-input" placeholder="Your full name" required>
+                <input type="text"
+                       name="full-name"
+                       class="form-input"
+                       placeholder="Your full name"
+                       required>
               </div>
+
               <div class="form-group">
                 <label class="form-label">Email Address *</label>
-                <input type="email" class="form-input" placeholder="your@email.com" required>
+                <input type="email"
+                       name="email"
+                       class="form-input"
+                       placeholder="your@email.com"
+                       required>
               </div>
+
               <div class="form-group">
                 <label class="form-label">WhatsApp Number</label>
-                <input type="tel" class="form-input" placeholder="+34 600 000 000">
+                <input type="tel"
+                       name="whatsapp"
+                       class="form-input"
+                       placeholder="+34 600 000 000">
               </div>
+
               <div class="form-group">
                 <label class="form-label">City in Spain *</label>
-                <select class="form-select" required>
+                <select name="city" class="form-select" required>
                   <option value="">Select your city…</option>
                   <option>Madrid</option>
                   <option>Barcelona</option>
                   <option>Valencia</option>
                   <option>Sevilla</option>
                   <option>Alicante</option>
+                  <option>Zaragoza</option>
                   <option>Bilbao</option>
                   <option>Málaga</option>
                   <option>Other</option>
                 </select>
               </div>
+
               <div class="form-group">
                 <label class="form-label">I am a…</label>
-                <select class="form-select">
+                <select name="status" class="form-select">
                   <option value="">Select one…</option>
                   <option>University student</option>
                   <option>Secondary school student</option>
@@ -215,9 +230,10 @@
                   <option>Other</option>
                 </select>
               </div>
+
               <div class="form-group">
                 <label class="form-label">How did you hear about GHASSA?</label>
-                <select class="form-select">
+                <select name="heard-from" class="form-select">
                   <option value="">Select…</option>
                   <option>WhatsApp group</option>
                   <option>Instagram (@ghassa.es)</option>
@@ -227,31 +243,58 @@
                   <option>Other</option>
                 </select>
               </div>
+
               <div class="form-group">
                 <label class="form-label">Anything you'd like to share with us?</label>
-                <textarea class="form-textarea" placeholder="Optional message…" style="min-height:80px;"></textarea>
+                <textarea name="message"
+                          class="form-textarea"
+                          placeholder="Optional message…"
+                          style="min-height:80px;"></textarea>
               </div>
-              <button type="submit" class="btn btn-green" style="width:100%;">🌟 Join GHASSA</button>
-              <div class="success-msg" id="joinSuccess">
-                ✅ Akwaaba! Thank you for joining GHASSA. We'll be in touch soon to welcome you to the community!
-              </div>
+
+              <!-- Formspree will redirect here after success -->
+              <input type="hidden" name="_next" value="https://theghostpacket.com/ghassa/membership.html?success=true">
+
+              <button type="submit" class="btn btn-green" style="width:100%;">
+                🌟 Join GHASSA
+              </button>
             </form>
+
+            <!-- shown when ?success=true is in URL after redirect -->
+            <div class="success-msg" id="successMsg">
+              ✅ Akwaaba! Thank you for joining GHASSA. We'll be in touch soon!
+            </div>
+
           </div>
         </div>
 
-        <!-- GOOGLE FORM EMBED -->
+        <!-- ── GOOGLE FORM EMBED ── -->
         <div class="form-card">
           <div class="form-card-header" style="background:var(--gold-dark);">
             <h3>📋 Full Membership Form</h3>
             <p>Complete membership registration via Google Form</p>
           </div>
-          <div class="form-card-body">
-            <!-- Replace the URL below with your actual Google Form embed URL -->
-            <div class="google-form-embed">
-              <iframe src="forms.gle/pFf8NNnqutWmgCbUA" 
-                width="100%" height="600" frameborder="0">
-              </iframe>
-            </div>
+          <div class="form-card-body" style="padding:0;">
+            <!--
+              Google Form embed.
+              The short link forms.gle/pFf8NNnqutWmgCbUA cannot be used directly
+              as an iframe src. Use the full viewform?embedded=true URL instead.
+              Steps to get it:
+                1. Open your Google Form
+                2. Click Send → < > Embed tab
+                3. Copy the iframe src URL (looks like https://docs.google.com/forms/d/e/LONG_ID/viewform?embedded=true)
+                4. Paste it below replacing the src value.
+            -->
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLSf_REPLACE_WITH_YOUR_FORM_ID/viewform?embedded=true"
+              width="100%"
+              height="680"
+              frameborder="0"
+              marginheight="0"
+              marginwidth="0"
+              style="display:block;">
+              Loading…
+            </iframe>
           </div>
         </div>
 
@@ -271,16 +314,13 @@
     </div>
   </section>
 </div>
+
 <script src="ghassa-components.js"></script>
 <script>
-  function submitJoinForm() {
-    const form = document.getElementById('joinForm');
-    const inputs = form.querySelectorAll('input[required], select[required]');
-    let valid = true;
-    inputs.forEach(i => { if (!i.value) { valid = false; i.style.borderColor = 'red'; } else { i.style.borderColor = ''; } });
-    if (!valid) return;
-    document.getElementById('joinSuccess').style.display = 'block';
-    window.scrollTo({ top: document.getElementById('joinSuccess').offsetTop - 100, behavior: 'smooth' });
+  // Show success message if redirected back from Formspree
+  if (window.location.search.includes('success=true')) {
+    document.getElementById('successMsg').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 </script>
 </body>
