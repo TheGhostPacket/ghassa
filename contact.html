@@ -103,7 +103,7 @@
             ✅ Medaase! Your message has been sent. We'll be in touch soon!
           </div>
 
-          <form id="contactForm">
+          <form id="contactForm" action="https://formspree.io/f/mwvrlrak" method="POST">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
               <div class="form-group">
                 <label class="form-label">First Name *</label>
@@ -140,7 +140,7 @@
               <input type="checkbox" id="newsletter" style="width:18px;height:18px;cursor:pointer;accent-color:var(--green);">
               <label for="newsletter" style="font-size:0.88rem;color:var(--gray);cursor:pointer;">Subscribe me to the GHASSA newsletter</label>
             </div>
-            <button type="button" class="btn btn-green" style="width:100%;font-size:1rem;" onclick="submitContact()">
+            <button type="submit" class="btn btn-green" style="width:100%;font-size:1rem;">
               📨 Send Message
             </button>
             <p style="font-size:0.78rem;color:var(--gray);text-align:center;margin-top:10px;">
